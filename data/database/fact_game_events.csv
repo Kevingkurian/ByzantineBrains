@@ -458,3 +458,28 @@ d238e7ed-8f8e-420a-a812-ae0680112a79,2,Agent_8,Shields,False,True,Agent_5,Agent_
 5a550f33-e90d-42a3-818f-b4d20098218f,3,Agent_5,Shields,False,True,Agent_6,Agent_6,True,0,True,0.8571428571428571
 5a550f33-e90d-42a3-818f-b4d20098218f,3,Agent_7,Navigation,False,True,Agent_6,Agent_6,True,0,True,0.8571428571428571
 5a550f33-e90d-42a3-818f-b4d20098218f,3,Agent_8,Reactor,False,True,Agent_6,Agent_6,True,0,True,0.8571428571428571
+1749866f-f168-454e-b89e-7831e63103b7,1,Agent_2,Admin,False,True,Agent_1,Agent_1,True,0,True,0.8571428571428571
+1749866f-f168-454e-b89e-7831e63103b7,1,Agent_3,Lower Engine,False,True,Agent_1,Agent_1,True,0,True,0.8571428571428571
+1749866f-f168-454e-b89e-7831e63103b7,1,Agent_4,Reactor,False,True,Agent_1,Agent_1,True,0,True,0.8571428571428571
+1749866f-f168-454e-b89e-7831e63103b7,1,Agent_5,Electrical,False,True,Agent_1,Agent_1,True,0,True,0.8571428571428571
+1749866f-f168-454e-b89e-7831e63103b7,1,Agent_7,Weapons,False,True,Agent_1,Agent_1,True,0,True,0.8571428571428571
+1749866f-f168-454e-b89e-7831e63103b7,1,Agent_8,Lower Engine,False,True,Agent_1,Agent_1,True,0,True,0.8571428571428571
+1749866f-f168-454e-b89e-7831e63103b7,2,Agent_2,Admin,False,True,Agent_8,Agent_8,True,0,True,0.8333333333333334
+1749866f-f168-454e-b89e-7831e63103b7,2,Agent_3,Lower Engine,False,True,Agent_8,Agent_8,True,0,True,0.8333333333333334
+1749866f-f168-454e-b89e-7831e63103b7,2,Agent_4,Reactor,False,True,Agent_8,Agent_8,True,0,True,0.8333333333333334
+1749866f-f168-454e-b89e-7831e63103b7,2,Agent_5,Electrical,False,True,Agent_8,Agent_8,True,0,True,0.8333333333333334
+1749866f-f168-454e-b89e-7831e63103b7,2,Agent_7,Weapons,False,True,Agent_8,Agent_8,True,0,True,0.8333333333333334
+1749866f-f168-454e-b89e-7831e63103b7,3,Agent_2,Cafeteria,False,True,Agent_8,Agent_8,True,0,True,1.0
+1749866f-f168-454e-b89e-7831e63103b7,3,Agent_3,Lower Engine,False,True,Agent_8,Agent_8,True,0,True,1.0
+1749866f-f168-454e-b89e-7831e63103b7,3,Agent_4,Reactor,False,True,Agent_8,Agent_8,True,0,True,1.0
+1749866f-f168-454e-b89e-7831e63103b7,3,Agent_5,Electrical,False,True,Agent_8,Agent_8,True,0,True,1.0
+1749866f-f168-454e-b89e-7831e63103b7,3,Agent_7,Weapons,False,True,Agent_8,Agent_8,True,0,True,1.0
+1749866f-f168-454e-b89e-7831e63103b7,4,Agent_2,Cafeteria,False,True,No Ejection,No Ejection,True,0,True,0.4
+1749866f-f168-454e-b89e-7831e63103b7,4,Agent_3,Lower Engine,False,True,Agent_8,No Ejection,False,0,True,0.4
+1749866f-f168-454e-b89e-7831e63103b7,4,Agent_4,Reactor,False,True,No Ejection,No Ejection,True,0,True,0.4
+1749866f-f168-454e-b89e-7831e63103b7,4,Agent_5,Electrical,False,True,Agent_8,No Ejection,False,0,True,0.4
+1749866f-f168-454e-b89e-7831e63103b7,4,Agent_7,Weapons,False,True,Agent_5,No Ejection,False,0,True,0.4
+1749866f-f168-454e-b89e-7831e63103b7,5,Agent_2,Cafeteria,False,True,Agent_5,Agent_5,True,0,True,0.8
+1749866f-f168-454e-b89e-7831e63103b7,5,Agent_3,Lower Engine,False,True,Agent_5,Agent_5,True,0,True,0.8
+1749866f-f168-454e-b89e-7831e63103b7,5,Agent_4,Reactor,False,True,Agent_5,Agent_5,True,0,True,0.8
+1749866f-f168-454e-b89e-7831e63103b7,5,Agent_7,Weapons,False,True,Agent_5,Agent_5,True,0,True,0.8
