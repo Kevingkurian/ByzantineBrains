@@ -274,3 +274,28 @@ def generate_agent_status_html(state, agents):
         {''.join(rows)}
     </table>
     """
+
+def generate_agent_status_html(state, agents):
+    rows = []
+    for agent in agents:
+        info = state.get(agent.name, {})
+        color = agent.color
+        model = agent.model_name
+        role = agent.agents_state[agent.name]["role"]
+
+        if info.get("ejected"):
+            status = "Ejected"
+        elif info.get("killed"):
+            status = "Killed"
+        else:
+            status = "Alive"
+
+        rows.append(f"<tr><td>{color}{agent.name}</td><td>{role.capitalize()}</td><td>{model}</td><td>{status}</td></tr>")
+
+    return f"""
+    <h3>Agent Status</h3>
+    <table border="1" style='color: #0f0; border-collapse: collapse; width: 100%;'>
+        <tr><th>Name</th><th>Role</th><th>Model</th><th>Status</th></tr>
+        {''.join(rows)}
+    </table>
+    """

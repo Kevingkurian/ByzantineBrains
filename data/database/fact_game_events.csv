@@ -483,3 +483,19 @@ d238e7ed-8f8e-420a-a812-ae0680112a79,2,Agent_8,Shields,False,True,Agent_5,Agent_
 1749866f-f168-454e-b89e-7831e63103b7,5,Agent_3,Lower Engine,False,True,Agent_5,Agent_5,True,0,True,0.8
 1749866f-f168-454e-b89e-7831e63103b7,5,Agent_4,Reactor,False,True,Agent_5,Agent_5,True,0,True,0.8
 1749866f-f168-454e-b89e-7831e63103b7,5,Agent_7,Weapons,False,True,Agent_5,Agent_5,True,0,True,0.8
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,1,Agent_2,Security,False,True,Agent_3,Agent_3,True,0,True,0.6666666666666666
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,1,Agent_4,Communications,False,True,Agent_3,Agent_3,True,0,True,0.6666666666666666
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,1,Agent_5,Reactor,False,True,Agent_3,Agent_3,True,0,True,0.6666666666666666
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,1,Agent_6,O2,False,True,Agent_3,Agent_3,True,0,True,0.6666666666666666
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,1,Agent_8,Storage,False,True,No Ejection,Agent_3,False,0,True,0.6666666666666666
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,2,Agent_2,Security,False,True,Agent_5,Agent_5,True,0,True,0.6
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,2,Agent_4,Communications,False,True,Agent_5,Agent_5,True,0,True,0.6
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,2,Agent_6,Cafeteria,False,True,Agent_5,Agent_5,True,0,True,0.6
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,2,Agent_8,Cafeteria,False,True,Agent_3,Agent_5,False,0,True,0.6
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,3,Agent_2,Security,False,True,Agent_6,Agent_6,True,0,True,0.5
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,3,Agent_4,Shields,False,True,Agent_6,Agent_6,True,0,True,0.5
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,3,Agent_8,Storage,False,True,Agent_3,Agent_6,False,0,True,0.5
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,4,Agent_2,Security,False,True,Agent_8,Agent_8,True,0,True,0.6666666666666666
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,4,Agent_4,Shields,False,True,Agent_8,Agent_8,True,0,True,0.6666666666666666
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,5,Agent_2,Security,False,True,Agent_5,Agent_5,True,0,True,1.0
+d67faf24-6ea3-4f7f-b419-13e5644b56d3,5,Agent_4,Shields,False,True,Agent_5,Agent_5,True,0,True,1.0
