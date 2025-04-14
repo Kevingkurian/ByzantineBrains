@@ -1,4 +1,4 @@
-game_id,round_id,agent_id,vote_target
+game_id,round_id,agent_id,vote_target,timestamp
 c6c045d2-fe57-4c29-b767-793eeac4ac99,1,Agent_1,No Ejection
 c6c045d2-fe57-4c29-b767-793eeac4ac99,1,Agent_2,No Ejection
 c6c045d2-fe57-4c29-b767-793eeac4ac99,1,Agent_3,No Ejection
@@ -572,3 +572,16 @@ d67faf24-6ea3-4f7f-b419-13e5644b56d3,4,Agent_4,Agent_8
 d67faf24-6ea3-4f7f-b419-13e5644b56d3,4,Agent_8,Agent_6
 d67faf24-6ea3-4f7f-b419-13e5644b56d3,5,Agent_2,Agent_5
 d67faf24-6ea3-4f7f-b419-13e5644b56d3,5,Agent_4,Agent_5
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_2,Agent_3,2025-04-13T19:01:22.960816
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_3,Agent_4,2025-04-13T19:01:23.221426
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_4,Agent_3,2025-04-13T19:01:23.495830
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_5,Agent_3,2025-04-13T19:01:23.990109
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_6,Agent_3,2025-04-13T19:01:24.275212
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_7,Agent_3,2025-04-13T19:01:24.541709
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_1,Agent_6,2025-04-13T19:03:16.934942
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_2,No Ejection,2025-04-13T19:03:17.396174
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_3,Agent_6,2025-04-13T19:03:17.671190
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_4,Agent_6,2025-04-13T19:03:18.108143
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_6,Agent_2,2025-04-13T19:03:18.409276
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_7,Agent_6,2025-04-13T19:03:18.671169
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_8,Agent_6,2025-04-13T19:03:19.104205

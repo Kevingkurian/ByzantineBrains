@@ -8,11 +8,15 @@ os.makedirs(db_dir, exist_ok=True)
 def write_csv(filename, headers, row):
     path = os.path.join(db_dir, filename)
     exists = os.path.exists(path)
+    row_with_timestamp = row.copy()
+    row_with_timestamp["timestamp"] = datetime.now().isoformat()
+    if "timestamp" not in headers:
+        headers = headers + ["timestamp"]
     with open(path, "a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=headers)
         if not exists:
             writer.writeheader()
-        writer.writerow(row)
+        writer.writerow(row_with_timestamp)
 
 def log_round_metadata(game_id, round_id, num_alive, num_killed):
     write_csv("dim_round.csv",

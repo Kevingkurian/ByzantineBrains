@@ -1,4 +1,4 @@
-game_id,round_id,agent_id,room,was_killed,vote_cast,vote_target,ejected,vote_correct,trust_change,consensus_reached,agreement_level
+game_id,round_id,agent_id,room,was_killed,vote_cast,vote_target,ejected,vote_correct,trust_change,consensus_reached,agreement_level,timestamp
 c6c045d2-fe57-4c29-b767-793eeac4ac99,1,Agent_1,Lower Engine,False,True,No Ejection,No Ejection,True,0,True,1.0
 c6c045d2-fe57-4c29-b767-793eeac4ac99,1,Agent_2,Lower Engine,False,True,No Ejection,No Ejection,True,0,True,1.0
 c6c045d2-fe57-4c29-b767-793eeac4ac99,1,Agent_3,Electrical,False,True,No Ejection,No Ejection,True,0,True,1.0
@@ -499,3 +499,14 @@ d67faf24-6ea3-4f7f-b419-13e5644b56d3,4,Agent_2,Security,False,True,Agent_8,Agent
 d67faf24-6ea3-4f7f-b419-13e5644b56d3,4,Agent_4,Shields,False,True,Agent_8,Agent_8,True,0,True,0.6666666666666666
 d67faf24-6ea3-4f7f-b419-13e5644b56d3,5,Agent_2,Security,False,True,Agent_5,Agent_5,True,0,True,1.0
 d67faf24-6ea3-4f7f-b419-13e5644b56d3,5,Agent_4,Shields,False,True,Agent_5,Agent_5,True,0,True,1.0
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_2,MedBay,False,True,Agent_3,Agent_3,True,0,True,0.8333333333333334,2025-04-13T19:01:24.543209
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_4,Electrical,False,True,Agent_3,Agent_3,True,0,True,0.8333333333333334,2025-04-13T19:01:24.543209
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_5,O2,False,True,Agent_3,Agent_3,True,0,True,0.8333333333333334,2025-04-13T19:01:24.543209
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_6,Lower Engine,False,True,Agent_3,Agent_3,True,0,True,0.8333333333333334,2025-04-13T19:01:24.543209
+22ca786b-c995-4d3c-bd37-e9795c52046d,1,Agent_7,Cafeteria,False,True,Agent_3,Agent_3,True,0,True,0.8333333333333334,2025-04-13T19:01:24.543710
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_1,Cafeteria,False,True,Agent_6,Agent_6,True,0,True,0.7142857142857143,2025-04-13T19:03:19.105705
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_2,MedBay,False,True,No Ejection,Agent_6,False,0,True,0.7142857142857143,2025-04-13T19:03:19.106206
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_3,Security,False,True,Agent_6,Agent_6,True,0,True,0.7142857142857143,2025-04-13T19:03:19.106206
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_4,Shields,False,True,Agent_6,Agent_6,True,0,True,0.7142857142857143,2025-04-13T19:03:19.106206
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_7,Electrical,False,True,Agent_6,Agent_6,True,0,True,0.7142857142857143,2025-04-13T19:03:19.106206
+8345e8e7-20c2-48bb-8bd7-f0f6fedc5939,1,Agent_8,Communications,False,True,Agent_6,Agent_6,True,0,True,0.7142857142857143,2025-04-13T19:03:19.106206
