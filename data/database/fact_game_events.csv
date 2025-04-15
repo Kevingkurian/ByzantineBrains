@@ -596,3 +596,14 @@ a589fdd1-6236-4cdc-9887-a5d49d30167f,2,Agent_4,Reactor,False,True,No Ejection,No
 a589fdd1-6236-4cdc-9887-a5d49d30167f,2,Agent_6,Lower Engine,False,True,Agent_8,No Ejection,False,0,True,0.5714285714285714,2025-04-15T12:01:46.218309
 a589fdd1-6236-4cdc-9887-a5d49d30167f,2,Agent_7,Lower Engine,False,True,No Ejection,No Ejection,True,0,True,0.5714285714285714,2025-04-15T12:01:46.218809
 a589fdd1-6236-4cdc-9887-a5d49d30167f,2,Agent_8,Admin,False,True,Agent_6,No Ejection,False,0,True,0.5714285714285714,2025-04-15T12:01:46.218809
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,2,Agent_1,Lower Engine,False,True,Agent_5,Agent_7,False,0,True,0.42857142857142855,2025-04-15T12:24:17.393810
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,2,Agent_2,Admin,False,True,Agent_7,Agent_7,True,0,True,0.42857142857142855,2025-04-15T12:24:17.393810
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,2,Agent_3,Navigation,False,True,Agent_7,Agent_7,True,0,True,0.42857142857142855,2025-04-15T12:24:17.394310
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,2,Agent_4,Reactor,False,True,No Ejection,Agent_7,False,0,True,0.42857142857142855,2025-04-15T12:24:17.394310
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,2,Agent_5,Admin,False,True,Agent_7,Agent_7,True,0,True,0.42857142857142855,2025-04-15T12:24:17.394310
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,2,Agent_6,Admin,False,True,No Ejection,Agent_7,False,0,True,0.42857142857142855,2025-04-15T12:24:17.394810
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,3,Agent_1,Lower Engine,False,True,Agent_5,Agent_5,True,0,True,0.8333333333333334,2025-04-15T12:24:44.456510
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,3,Agent_2,Admin,False,True,Agent_5,Agent_5,True,0,True,0.8333333333333334,2025-04-15T12:24:44.456510
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,3,Agent_3,Navigation,False,True,Agent_5,Agent_5,True,0,True,0.8333333333333334,2025-04-15T12:24:44.457009
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,3,Agent_4,Reactor,False,True,Agent_5,Agent_5,True,0,True,0.8333333333333334,2025-04-15T12:24:44.457508
+0fb603c7-7c88-4d49-ad1b-7fd414592e79,3,Agent_6,Cafeteria,False,True,Agent_5,Agent_5,True,0,True,0.8333333333333334,2025-04-15T12:24:44.457508

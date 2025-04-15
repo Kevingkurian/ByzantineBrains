@@ -1,9 +1,11 @@
+# Creates and initializes agents with assigned models, roles, and colors.
 from agents.honest_agent import HonestAgent
 from agents.byzantine_agent import ByzantineAgent
 from data.database import log_agent_metadata
 import random
 
 def create_agents(game_id, selected_model="All"):
+    # Define available agent colors and model names.
     colors = ["🔴", "🔵", "🟢", "💗", "🟠", "🟡", "⚫", "⚪"]
     available_models = [
         "gpt-4o",
@@ -16,15 +18,18 @@ def create_agents(game_id, selected_model="All"):
         "gpt-4",
     ]
 
+    # Assign models based on selection, shuffling if "All".
     if selected_model != "All":
         model_assignments = [selected_model for _ in available_models]
     else:
         model_assignments = available_models.copy()
         random.shuffle(model_assignments)
 
+    # Randomly choose 2 non-Claude agents to be Byzantine.
     eligible_indices = [i for i, model in enumerate(model_assignments) if "claude" not in model]
     byzantine_indices = random.sample(eligible_indices, 2)
 
+    # Initialize agent state with role and perception fields.
     agents_state = {
         f"Agent_{i+1}": {
             "role": "byzantine" if i in byzantine_indices else "honest",
@@ -36,6 +41,7 @@ def create_agents(game_id, selected_model="All"):
     }
 
     agents = []
+    # Instantiate agent objects with role-based classes and assign metadata.
     for i, model in enumerate(model_assignments):
         name = f"Agent_{i+1}"
         role = agents_state[name]["role"]

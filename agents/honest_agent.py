@@ -1,3 +1,4 @@
+# HonestAgent represents an LLM-based player that aims to identify and eject Byzantine agents using strategic reasoning.
 import os
 import random
 import re
@@ -7,6 +8,7 @@ from langchain.schema.runnable import RunnableSequence
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 
+# Default LLM used when no model behavior is defined. (Behavior should always be defined so this is a fail-safe.)
 llm = lambda prompt: litellm.completion(
     model="gpt-4o",
     messages=[{"role": "user", "content": str(prompt)}],
@@ -15,6 +17,7 @@ llm = lambda prompt: litellm.completion(
 
 class HonestAgent:
     def __init__(self, name, agents_state, model_name="gpt-4o", color="❓"):
+        # Initialize agent identity, trust, and prompt chain.
         self.name = name
         self.color = color
         self.model_name = model_name
@@ -41,6 +44,7 @@ class HonestAgent:
                 | self.llm
         )
 
+    # Handles model-specific LLM invocation depending on model provider.
     def llm(self, prompt):
         if "claude" in self.model_name:
             provider = "anthropic"
@@ -65,6 +69,7 @@ class HonestAgent:
                 temperature=0.7
             )
 
+    # Generates a new message based on perception and recent messages.
     def simulate_message(self, seen_history):
         self.agents_state[self.name]["seen_history"] = seen_history
         recent = seen_history[-1] if seen_history else {}
@@ -108,6 +113,7 @@ class HonestAgent:
         self.agents_state[self.name]["memory"] = self.analyze_memory()
         return message
 
+    # Responds to recent messages and perception history with a one-line reply.
     def respond_to_message(self, last_messages, seen_history):
         self.agents_state[self.name]["seen_history"] = seen_history
         recent_msgs = [f"{agent}: {msg}" for agent, msg in last_messages.items() if msg][-3:]
@@ -127,6 +133,7 @@ class HonestAgent:
             self.agents_state[self.name]["messages"].append(response)
         return response
 
+    # Chooses the next room to move into based on adjacent rooms and context.
     def choose_room(self, current_room, adjacent_rooms, full_state):
         nearby = {
             room: [agent for agent, info in full_state.items() if isinstance(info, dict) and info.get("room") == room]
@@ -153,6 +160,7 @@ class HonestAgent:
         response = self.llm(prompt)["choices"][0]["message"]["content"].strip()
         return response if response in adjacent_rooms or response == current_room else current_room
 
+    # Adjusts trust score toward another agent based on vote correctness.
     def update_trust(self, other_agent, voted_correctly):
         """
         Adjusts trust score for a given agent.
@@ -167,6 +175,7 @@ class HonestAgent:
             self.trust_scores[other_agent] = max(self.trust_scores[other_agent] - 20, 0)
         self.agents_state[self.name]["trust_scores"] = self.trust_scores.copy()
 
+    # Decides which agent to vote for ejection based on observations and messages.
     def vote_for_ejection(self):
         alive_targets = [
             a for a in self.agents_state
@@ -212,6 +221,7 @@ class HonestAgent:
 
         return self.name, response
 
+    # Analyzes agent's message history to extract common words and mentions.
     def analyze_memory(self):
         messages = self.agents_state[self.name].get("messages", [])
         if not messages:
@@ -240,6 +250,7 @@ class HonestAgent:
         summary_agents = ", ".join([f"{agent}({count})" for agent, count in top_mentions])
         return f"Words: {summary_words if summary_words else 'None'} | Mentions: {summary_agents if summary_agents else 'None'}"
 
+    # Predicts agent roles from message and perception history.
     def predict_roles(self):
         messages = []
         for agent, data in self.agents_state.items():
@@ -278,6 +289,7 @@ class HonestAgent:
             return {}
         return {}
 
+    # Appends round-specific perception and message to the memory stream.
     def update_memory_stream(self, round_num):
         perception = self.agents_state[self.name].get("seen_history", [])
         messages = self.agents_state[self.name].get("messages", [])

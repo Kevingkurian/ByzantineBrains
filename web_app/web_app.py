@@ -1,3 +1,4 @@
+# Flask-based server for running and visualizing the ByzantineBrains simulation.
 import sys
 import os
 import time
@@ -10,6 +11,7 @@ from game.game_loop import run_game_round, finalize_log, generate_map_html, gene
 app = Flask(__name__)
 active_game_id = None
 
+# Captures stdout and buffers it for streaming to the client.
 class RealTimeStream:
     def __init__(self):
         self.buffer = []
@@ -28,11 +30,13 @@ class RealTimeStream:
         self.buffer.clear()
         return output
 
+# Serves the main simulation UI with the initial map.
 @app.route("/")
 def index():
     initial_map = generate_map_html()
     return render_template("index.html", map_html=initial_map)
 
+# Runs the full simulation, streaming each round's output to the UI.
 @app.route("/run")
 def run():
     selected_model = request.args.get("model", "All")
@@ -51,6 +55,7 @@ def run():
                 print(f"--- Round {round_num} ---")
                 yield from stream.flush()
                 yield from run_game_round(game_id, round_num, state, agents, agents_state, stream)
+                # End simulation early if win condition is met.
                 alive_byzantines = [a for a in agents if agents_state[a.name]["role"] == "byzantine" and not state[a.name]["killed"]]
                 alive_honest = [a for a in agents if agents_state[a.name]["role"] == "honest" and not state[a.name]["killed"]]
                 if not alive_byzantines or len(alive_byzantines) >= len(alive_honest):
@@ -66,6 +71,7 @@ def run():
 
     return Response(generate(), mimetype='text/event-stream')
 
+# Returns the current map and agent status for periodic frontend updates.
 @app.route("/map")
 def map_endpoint():
     agents, state = get_current_state()
@@ -74,5 +80,6 @@ def map_endpoint():
         agent_status=generate_agent_status_html(state, agents)
     )
 
+# Launch the Flask app with threading enabled for live updates.
 if __name__ == "__main__":
     app.run(debug=True, threaded=True)

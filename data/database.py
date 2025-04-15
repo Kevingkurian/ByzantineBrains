@@ -5,7 +5,9 @@ from datetime import datetime
 db_dir = os.path.join(os.path.dirname(__file__), "database")
 os.makedirs(db_dir, exist_ok=True)
 
+# Handles CSV-based logging of game metadata, events, and agent interactions for analysis and tracking.
 def write_csv(filename, headers, row):
+
     path = os.path.join(db_dir, filename)
     exists = os.path.exists(path)
     row_with_timestamp = row.copy()
@@ -18,6 +20,7 @@ def write_csv(filename, headers, row):
             writer.writeheader()
         writer.writerow(row_with_timestamp)
 
+# All following functions should be self-explanatory.
 def log_round_metadata(game_id, round_id, num_alive, num_killed):
     write_csv("dim_round.csv",
               ["game_id", "round_id", "timestamp", "num_alive", "num_killed"],

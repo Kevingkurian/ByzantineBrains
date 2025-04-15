@@ -1,3 +1,4 @@
+# ByzantineAgent represents an LLM-based deceptive player that aims to mislead others and protect fellow Byzantine agents.
 import os
 import random
 import re
@@ -9,6 +10,7 @@ from langchain.schema.runnable import RunnableSequence
 from langchain.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 
+# Default fallback fail-safe LLM for general message generation.
 llm = lambda prompt: litellm.completion(
     model="gpt-4o",
     messages=[{"role": "user", "content": str(prompt)}],
@@ -16,6 +18,7 @@ llm = lambda prompt: litellm.completion(
 )
 class ByzantineAgent:
     def __init__(self, name, agents_state, model_name="gpt-4o", color="❓"):
+        # Initialize agent identity, deception team, and prompt chain.
         self.name = name
         self.color = color
         self.model_name = model_name
@@ -41,9 +44,11 @@ class ByzantineAgent:
             | self.llm
         )
 
+    # Byzantines do not adjust trust scores.
     def update_trust(self, other_agent, voted_correctly):
         pass
 
+    # Handles model-specific LLM calls for message generation.
     def llm(self, prompt):
         if "claude" in self.model_name:
             provider = "anthropic"
@@ -69,6 +74,7 @@ class ByzantineAgent:
                 temperature=0.7
             )
 
+    # Generates a deceptive message based on perception and conversation history.
     def simulate_message(self, seen_history):
         self.agents_state[self.name]["seen_history"] = seen_history
         recent = seen_history[-1] if seen_history else {}
@@ -109,6 +115,7 @@ class ByzantineAgent:
 
         return message
 
+    # Responds to the group discussion using deceptive logic.
     def respond_to_message(self, last_messages, seen_history):
         self.agents_state[self.name]["seen_history"] = seen_history
         recent_msgs = [f"{agent}: {msg}" for agent, msg in last_messages.items() if msg][-3:]
@@ -125,6 +132,7 @@ class ByzantineAgent:
         response = llm(prompt)["choices"][0]["message"]["content"].strip()
         print(f"{self.name} responded: {response}")
 
+    # Picks a room to move to or chooses to kill if strategic opportunity arises.
     def choose_room(self, current_room, adjacent_rooms, full_state):
         nearby = {
             room: [agent for agent, info in full_state.items() if isinstance(info, dict) and info.get("room") == room]
@@ -175,6 +183,7 @@ class ByzantineAgent:
                     return f"Kill {target}"
         return current_room
 
+    # Votes to eject an honest agent while avoiding targeting fellow Byzantines.
     def vote_for_ejection(self):
         alive_targets = [
             a for a in self.agents_state
@@ -221,6 +230,7 @@ class ByzantineAgent:
 
         return self.name, response
 
+    # Analyzes message history for common words and named agent mentions.
     def analyze_memory(self):
         messages = self.agents_state[self.name].get("messages", [])
         if not messages:
@@ -249,6 +259,7 @@ class ByzantineAgent:
         summary_agents = ", ".join([f"{agent}({count})" for agent, count in top_mentions])
         return f"Words: {summary_words if summary_words else 'None'} | Mentions: {summary_agents if summary_agents else 'None'}"
 
+    # Stores memory data (message and perception) for the current round.
     def update_memory_stream(self, round_num):
         perception = self.agents_state[self.name].get("seen_history", [])
         messages = self.agents_state[self.name].get("messages", [])

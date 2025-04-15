@@ -4,9 +4,10 @@ from config.settings import NUM_ROUNDS
 from data.database import log_round_metadata, write_csv, log_game_model_selection
 import random
 
-NUM_ROUNDS = 10  # increased to 10 rounds for a clearer end condition
+NUM_ROUNDS = 10  # Increased to 10 rounds for a clearer end condition.
 _current_game = {}
 
+# Initializes the game state, agents, and room assignments for a new simulation.
 def setup_game(game_id, selected_model="All"):
     agents, agents_state = create_agents(game_id, selected_model)
     all_rooms = list(rooms.keys())
@@ -34,5 +35,6 @@ def setup_game(game_id, selected_model="All"):
     _current_game.update({"state": state, "agents": agents, "agents_state": agents_state, "round": 0})
     return agents, agents_state, state
 
+# Returns the current list of agents and their game state.
 def get_current_state():
     return _current_game.get("agents", []), _current_game.get("state", {})

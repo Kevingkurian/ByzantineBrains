@@ -1,3 +1,4 @@
+# Handles simulation logic, including movement, voting, visualization, and game state updates.
 import random
 import config
 from agents.agent_setup import create_agents
@@ -11,9 +12,11 @@ from data.database import (
     log_consensus, log_round_metadata
 )
 
+# Clears the terminal for fresh map display.
 def clear_terminal():
     os.system("cls" if platform.system() == "Windows" else "clear")
 
+# Defines adjacency map of the ship layout.
 rooms = {
     "Cafeteria": ["Weapons", "Navigation", "Storage", "Admin", "MedBay", "Upper Engine"],
     "Weapons": ["Cafeteria", "O2"],
@@ -31,6 +34,7 @@ rooms = {
     "MedBay": ["Upper Engine", "Cafeteria"]
 }
 
+# Sets up logging directory and file for storing simulation output.
 log_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "logs"))
 os.makedirs(log_dir, exist_ok=True)
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -40,6 +44,7 @@ log_data = {
     "events": []
 }
 
+# Prints the current ship map showing agents and bodies in each room.
 def show_ship_map(state, agents):
     clear_terminal()
     mapping = {room: [] for room in rooms}
@@ -73,6 +78,7 @@ def show_ship_map(state, agents):
         if occupants:
             print(f"{room}: {' '.join(occupants)}")
 
+# Handles agent movement, task completion, body discovery, and body reporting.
 def movement_phase(state, agents, agents_state, stream):
     if "_reported_bodies" not in state:
         state["_reported_bodies"] = set()
@@ -84,6 +90,7 @@ def movement_phase(state, agents, agents_state, stream):
         adj = rooms[current]
         dest = agent.choose_room(current, adj, state)
 
+        # Handle kill action if applicable
         if dest.startswith("Kill "):
             target_name = dest.split(" ")[1]
             if target_name in state and state[target_name]["room"] == current and not state[target_name]["killed"]:
@@ -107,6 +114,7 @@ def movement_phase(state, agents, agents_state, stream):
                 print(f"{agent.name} moved from {current} to {dest}")
             yield from stream.flush()
 
+        # Update perception of other agents and bodies
         seen = [
             a for a, info in state.items()
             if isinstance(info, dict) and info.get("room") == dest and a != agent.name and not info.get("killed", False)
@@ -125,6 +133,7 @@ def movement_phase(state, agents, agents_state, stream):
             "bodies_seen": seen_bodies
         })
 
+        # Honest agents report discovered bodies
         if seen_bodies and not state[agent.name]["killed"]:
             if agent.__class__.__name__ == "HonestAgent":
                 body_to_report = seen_bodies[0]
@@ -134,6 +143,7 @@ def movement_phase(state, agents, agents_state, stream):
                 state["_reported_bodies"].add(body_to_report)
                 yield from stream.flush()
 
+        # Honest agents perform their tasks if in the correct room
         if agent.__class__.__name__ == "HonestAgent":
             if not state[agent.name]["task_done"]:
                 if state[agent.name]["room"] == state[agent.name]["task_room"]:
@@ -148,11 +158,13 @@ def movement_phase(state, agents, agents_state, stream):
                 else:
                     state[agent.name]["doing_task"] = False
 
+# Executes a full round including movement, discussion, voting, and ejection logic.
 def run_game_round(game_id, step, state, agents, agents_state, stream):
     yield from movement_phase(state, agents, agents_state, stream)
     show_ship_map(state, agents)
     yield from stream.flush()
 
+    # Check for endgame conditions
     alive = [a for a in state if isinstance(state[a], dict) and not state[a]["killed"]]
     alive_byzantines = [a for a in alive if agents_state[a]["role"] == "byzantine"]
     alive_honest = [a for a in alive if agents_state[a]["role"] == "honest"]
@@ -174,6 +186,7 @@ def run_game_round(game_id, step, state, agents, agents_state, stream):
         yield from stream.flush()
         return
 
+    # Discussion and voting phase (if any body was seen)
     messages = {}
     any_body_seen = any(
         isinstance(agent_state, dict)
@@ -186,7 +199,6 @@ def run_game_round(game_id, step, state, agents, agents_state, stream):
     if any_body_seen:
         print(f"\n--- DISCUSSION (Round {step}) ---")
         yield from stream.flush()
-        messages = {}
         for agent in agents:
             if state[agent.name]["killed"]:
                 continue
@@ -205,6 +217,7 @@ def run_game_round(game_id, step, state, agents, agents_state, stream):
             if response:
                 log_reflection(game_id, step, agent.name, response)
 
+        # Voting and ejection logic
         print(f"\n--- VOTING (Round {step}) ---")
         yield from stream.flush()
         votes = {}
@@ -254,11 +267,13 @@ def run_game_round(game_id, step, state, agents, agents_state, stream):
                            state[agent.name]["killed"], True, votes[agent.name],
                            ejected, votes[agent.name] == ejected, 0, True, agreement_level)
 
+# Saves all collected log data to disk as JSON.
 def finalize_log():
     with open(log_file_path, "w") as f:
         json.dump(log_data, f, indent=2)
     print(f"Simulation results saved to {log_file_path}")
 
+# Generates the current map as HTML for frontend display.
 def generate_map_html(state=None, agents=None):
     mapping = {room: [] for room in rooms}
     bodies = {room: [] for room in rooms}
@@ -287,30 +302,7 @@ def generate_map_html(state=None, agents=None):
     </div>
     """
 
-def generate_agent_status_html(state, agents):
-    rows = []
-    for agent in agents:
-        info = state.get(agent.name, {})
-        color = agent.color
-        model = agent.model_name
-
-        if info.get("ejected"):
-            status = "Ejected"
-        elif info.get("killed"):
-            status = "Killed"
-        else:
-            status = "Alive"
-
-        rows.append(f"<tr><td>{color}{agent.name}</td><td>{model}</td><td>{status}</td></tr>")
-
-    return f"""
-    <h3>Agent Status</h3>
-    <table border="1" style='color: #0f0; border-collapse: collapse; width: 100%;'>
-        <tr><th>Name</th><th>Model</th><th>Status</th></tr>
-        {''.join(rows)}
-    </table>
-    """
-
+# Generates agent status summary table in HTML.
 def generate_agent_status_html(state, agents):
     rows = []
     for agent in agents:
