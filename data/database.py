@@ -62,7 +62,7 @@ def log_game_event(game_id, round_id, agent_id, room, was_killed, vote_cast, vot
                "vote_cast": vote_cast,
                "vote_target": vote_target,
                "ejected": ejected,
-               "vote_correct": vote_correct,
+               "vote_correct": int(bool(vote_correct)),
                "trust_change": trust_change,
                "consensus_reached": consensus_reached,
                "agreement_level": agreement_level})
