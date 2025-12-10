@@ -1,54 +1,45 @@
 # The Byzantine Brains: Fault-Tolerant Consensus with LLMs
 
-![ByzantineBrains Screenshot](https://github.com/NealShankarGit/ByzantineBrains/blob/main/images/readme_screenshot.png?raw=true)
-
-![ByzantineBrains Screenshot](https://github.com/NealShankarGit/ByzantineBrains/blob/main/images/analysis_screenshot.png?raw=true)
+**An Agent-Based Social Deduction Simulation Powered by Large Language Models**
 
 ## Project Overview
-The Byzantine Brains project explores fault-tolerant consensus-building in distributed AI systems using large language models (LLMs). Inspired by the Byzantine Generals Problem, the project aims to develop a scalable, reliable system for robust decision-making in uncertain environments.
+The Byzantine Brains project explores fault-tolerant consensus-building in distributed AI systems using Large Language Models (LLMs). Inspired by a social deduction game ( *Among Us*), the project simulates a spaceship environment where **Honest Agents** (Crewmates) must complete tasks and identify impostors, while **Byzantine Agents** (Impostors) attempt to deceive, eliminate agents, and manipulate consensus.
+
+This project uses locally hosted LLMs (via Hugging Face Transformers) to drive agent decision-making, allowing for  behavioral analysis and "Game Theory" experimentation with AI agents.
 
 ## Objectives
-- Develop a distributed AI system leveraging LLMs for dynamic negotiation and conflict resolution.
-- Analyze and address the Byzantine Generals Problem in real-time AI interactions.
-- Explore novel applications of consensus algorithms in multi-agent frameworks.
+- **Simulate Deception & Detection:** Analyze how LLM agents behave when assigned conflicting goals (Truth-Seeking vs. Deception).
+- **Behavioral Statistics:** Track granular metrics like voting accuracy, movement patterns, and discussion persuasion to quantify agent performance.
+- **Fault Tolerance:** Study how honest agents reach consensus (voting out impostors) despite active disinformation from Byzantine actors.
 
 ## Technologies
-- **Languages**: Python, HTML, JavaScript
-- **Frameworks & Libraries**: Flask, LangChain, LiteLLM, Google Generative AI, Anthropic Claude
-- **Data Storage**: CSV-based logging (via Python's `csv` module)
-- **Frontend**: Jinja2 templates with live SSE updates for real-time simulation
+- **Languages**: Python 3.10+
+- **LLM Backend**: `transformers`, `torch` (Local Execution via CUDA/CPU)
+- **Agent Logic**:  `HonestAgent` and `ByzantineAgent` classes
+- **Simulation Engine**:  `GameEngine` with state management and logging
+- **Data Storage**: CSV-based statistical logging for post-game analysis
 
 ## Project Structure
-/agents
-    honest_agent.py        # Honest agent logic using LLMs and trust tracking
-    byzantine_agent.py     # Byzantine agent logic using LLMs for deception
-    agent_setup.py         # Agent initialization and configuration
 
-/consensus
-    consensus_module.py    # Decision logic for reaching consensus among agents
+```text
+/agents
+    honest_agent.py        # Logic for Crewmates: Deduction, Alibi checking, Voting
+    byzantine_agent.py     # Logic for Impostors: Deception, Tagging (Kills), Deflection
+    base_agent.py          # Shared agent interfaces
+
+/config
+    settings.py            # Global game settings (Map layout, Round counts, Role distribution)
 
 /core
-    simulation.py          # Initializes game state and tracks current simulation data
-
-/data
-    database.py            # CSV-based logging of game events, rounds, trust, and votes
+    state.py               # Manages the "World View" (Locations, Bodies, Occupants, Stats)
+    logger.py              # Handles game logging and CSV export
+    llm.py                 # Wrapper for Hugging Face Transformers (Model loading & Generation)
 
 /game
-    game_loop.py           # Full simulation loop: movement, discussion, voting, map rendering
+    game_engine.py         # Main loop: Movement Phase -> Discussion Phase -> Voting
 
-/web_app
-    web_app.py             # Flask app for running the simulation and streaming output
+/logs                      # Generated game logs and stats
+    /Game_1234/            # Unique folder per game session
+        game_stats.csv     # Final outcome and detailed player metrics
 
-main.py                   # Entry point to launch the Flask web application
-
-## Team
-- **Neal Shankar** - Project Manager / Developer - neal.shankar@ufl.edu
-- **Tyler Wescott** - System Architect / Developer - tylerwescott@ufl.edu
-
-## Advisor
-- **Dr. Emmanuel Dorley**  
-  Department of Computer & Information Science & Engineering (CISE)  
-  Email: edorley@ufl.edu  
-
-## Contact
-For inquiries, please reach out to the team.
+main.py                    #  to launch the simulation
